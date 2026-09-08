@@ -1,0 +1,28 @@
+class Solution:
+    def findRelativeRanks(self, score):
+        n = len(score)
+
+        # Store (score, original_index)
+        athletes = []
+
+        for i in range(n):
+            athletes.append((score[i], i))
+
+        # Sort by score in descending order
+        athletes.sort(reverse=True)
+
+        result = [""] * n
+
+        for rank in range(n):
+            original_index = athletes[rank][1]
+
+            if rank == 0:
+                result[original_index] = "Gold Medal"
+            elif rank == 1:
+                result[original_index] = "Silver Medal"
+            elif rank == 2:
+                result[original_index] = "Bronze Medal"
+            else:
+                result[original_index] = str(rank + 1)
+
+        return result
